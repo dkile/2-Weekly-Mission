@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import {
   ComponentPropsWithRef,
   ComponentPropsWithoutRef,
@@ -10,11 +10,7 @@ function Card({ children, ...props }: ComponentPropsWithRef<"div">) {
   return <div {...props}>{children}</div>;
 }
 
-interface ThumbnailProps extends HTMLAttributes<HTMLImageElement> {
-  src: string;
-  alt: string;
-}
-function Thumbnail({ src, alt, ...props }: ThumbnailProps) {
+function Thumbnail({ src, alt, ...props }: ImageProps) {
   return <Image {...props} src={src} alt={alt} />;
 }
 
