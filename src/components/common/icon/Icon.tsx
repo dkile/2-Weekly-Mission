@@ -20,6 +20,8 @@ const ICON_MATCHER = {
   kebab: "kebab-more",
   add: "add",
   close: "close",
+  eyeOn: "eye-on",
+  eyeOff: "eye-off",
 };
 
 export type IconDict = keyof typeof ICON_MATCHER;
