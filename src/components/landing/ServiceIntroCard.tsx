@@ -28,8 +28,8 @@ export default function ServiceIntroCard({
       <Card.Thumbnail
         src={thumbnail}
         alt={`${thumbnail} 이미지`}
-        width={550}
-        height={450}
+        width={1100}
+        height={900}
         className="tablet:service-intro-content-image relative order-2 h-auto w-full"
       />
     </Card>

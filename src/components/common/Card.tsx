@@ -2,7 +2,6 @@ import Image, { ImageProps } from "next/image";
 import {
   ComponentPropsWithRef,
   ComponentPropsWithoutRef,
-  HTMLAttributes,
   ReactNode,
 } from "react";
 

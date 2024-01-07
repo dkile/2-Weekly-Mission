@@ -25,8 +25,8 @@ export default function HeroHeader() {
         src={`${assetRoutes.image}/hero`}
         className="h-[16rem] w-[32.5rem] tablet:h-[34.4rem] tablet:w-[69.8rem] desktop:h-[59rem] desktop:w-[120rem]"
         alt="Linkbrary 서비스 소개"
-        width={325}
-        height={160}
+        width={2400}
+        height={1180}
       />
     </div>
   );

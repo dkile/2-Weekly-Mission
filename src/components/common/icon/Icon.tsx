@@ -1,4 +1,4 @@
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import { HTMLAttributes } from "react";
 import SVGIcon from "@/components/common/icon/SVGIcon";
 import { assetRoutes } from "@/routes";
@@ -24,23 +24,23 @@ const ICON_MATCHER = {
 
 export type IconDict = keyof typeof ICON_MATCHER;
 
-interface Props extends HTMLAttributes<HTMLSpanElement>, ImageProps {
+interface Props extends HTMLAttributes<HTMLImageElement | HTMLSpanElement> {
   type?: "svg" | "img";
   name: IconDict;
-  fill?: boolean;
 }
 
 export default function Icon({ type = "svg", name, ...props }: Props) {
-  if (type === "svg") return <SVGIcon name={name} aria-hidden {...props} />;
+  if (type === "svg")
+    return <SVGIcon name={ICON_MATCHER[name]} aria-hidden {...props} />;
   if (type === "img")
     return (
       <Image
-        {...props}
-        src={`${assetRoutes.icon}/${name}.svg`}
+        src={`${assetRoutes.icon}/${ICON_MATCHER[name]}.svg`}
         alt={`${name} 아이콘`}
-        width={16}
-        height={16}
+        width={20}
+        height={20}
         aria-hidden
+        {...props}
       />
     );
 }
