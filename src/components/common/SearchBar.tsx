@@ -13,6 +13,7 @@ export default function SearchBar({
   onResetInput = () => {},
 }: Props) {
   const handleChangeSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log("hi");
     onChangeInput(e.target.value);
   };
 

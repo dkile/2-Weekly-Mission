@@ -11,6 +11,7 @@ export const apiRoutes = {
   folderList: (userId: number) => `users/${userId}/folders`,
   linkList: (userId: number) => `users/${userId}/links`,
   user: (userId: number) => `users/${userId}`,
+  sampleFolder: "sample/folder",
 };
 
 export const pageRoutes = {
