@@ -7,6 +7,7 @@ import {
   createContext,
   useContext,
 } from "react";
+import Icon from "./icon/Icon";
 
 const ModalContext = createContext<RefObject<HTMLDialogElement> | null>(null);
 const ModalActionContext = createContext({ open: () => {}, close: () => {} });
@@ -50,9 +51,28 @@ function Content({ children, ...props }: ComponentPropsWithoutRef<"dialog">) {
     if ((e.target as HTMLElement).nodeName === "DIALOG") close();
   };
 
+  const handleClickCloseButton = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    close();
+  };
+
   return (
-    <dialog ref={dialogRef} onClick={handleClickBackdrop} {...props}>
-      <div className="h-full w-full">{children}</div>
+    <dialog
+      ref={dialogRef}
+      onClick={handleClickBackdrop}
+      onKeyUp={() => {}}
+      className="overflow-hidden rounded-[1.6rem]"
+    >
+      <div className="relative w-fit bg-u-white px-[4rem] py-[3.2rem]">
+        <button
+          type="button"
+          onClick={handleClickCloseButton}
+          className="absolute right-[1.6rem] top-[1.6rem] "
+        >
+          <Icon name="close" type="img" className="h-[2.4rem] w-[2.4rem]" />
+        </button>
+        {children}
+      </div>
     </dialog>
   );
 }
