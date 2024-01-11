@@ -2,7 +2,7 @@ import { User } from "@/types/user";
 import { PropsWithChildren, createContext, useState } from "react";
 
 const initialUser = {
-  id: null,
+  id: 0,
   createdAt: "",
   name: "",
   email: "",

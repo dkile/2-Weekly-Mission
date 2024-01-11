@@ -1,33 +1,15 @@
-import { useEffect, useState } from "react";
-import { Folder } from "@/types/folder";
+import { useCallback } from "react";
 import { resolvers } from "@/resolvers/folder.resolver";
+import useQuery from "@/hooks/common/use-query";
 
-export const useFolderListQuery = (userId: number | null) => {
-  const [folderList, setFolderList] = useState<Folder[]>([]);
-  const [error, setError] = useState<Error | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (!userId) return;
-    let ignore = false;
-    const fetchFolderList = async () => {
-      try {
-        const folderList = await resolvers.resolveFolderList(userId);
-        if (!ignore) {
-          setFolderList(folderList);
-        }
-      } catch (err) {
-        if (err instanceof Error) setError(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchFolderList();
-
-    return () => {
-      ignore = true;
-    };
-  }, [userId]);
+export const useFolderListQuery = (userId: number) => {
+  const {
+    data: folderList,
+    isLoading,
+    error,
+  } = useQuery({
+    queryFn: useCallback(() => resolvers.resolveFolderList(userId), [userId]),
+  });
 
   return { folderList, isLoading, error };
 };

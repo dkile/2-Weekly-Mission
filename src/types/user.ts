@@ -1,5 +1,5 @@
 export type User = {
-  id: number | null;
+  id: number;
   createdAt: string;
   name: string;
   imageSource: string;
