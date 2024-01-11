@@ -8,9 +8,9 @@ export default function AccountButton() {
   return (
     <button type="button">
       <div className="flex items-center gap-[0.6rem]">
-        {account.image_source ? (
+        {account.imageSource ? (
           <Image
-            src={account.image_source}
+            src={account.imageSource}
             alt="프로필 이미지"
             className="h-[2.8rem] w-[2.8rem] rounded-full"
             width={28}

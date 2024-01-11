@@ -1,15 +1,16 @@
 import { apiRouteUtils } from "@/routes";
 import { fetcher } from "@/apis/fetcher";
-import { Folder } from "./sample.schema";
+import { FolderResponse } from "./sample.schema";
 
 export const getSampleFolder = async () => {
-  try {
-    const folder = await fetcher.get(apiRouteUtils.SAMPLE_FOLDER).json();
-    const validFolder = Folder.parse(folder);
+  const res = await fetcher
+    .get(apiRouteUtils.SAMPLE_FOLDER)
+    .json()
+    .then(FolderResponse.parse)
+    .catch((err) => {
+      console.error(err);
+      throw err;
+    });
 
-    return validFolder;
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
+  return res;
 };

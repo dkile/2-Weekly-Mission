@@ -1,19 +1,18 @@
 import { fetcher } from "@/apis/fetcher";
 import { apiRouteUtils } from "@/routes";
-import { LinkList } from "@/apis/link/link.schema";
+import { LinkListResponse } from "@/apis/link/link.schema";
 
 export const getLinkList = async (userId: number, folderId?: number) => {
-  try {
-    const linkList = await fetcher
-      .get(apiRouteUtils.parseLinkListURL(userId), {
-        searchParams: folderId ? { folderId } : undefined,
-      })
-      .json();
-    const validLinkList = LinkList.parse(linkList);
+  const res = await fetcher
+    .get(apiRouteUtils.parseLinkListURL(userId), {
+      searchParams: folderId ? { folderId } : undefined,
+    })
+    .json()
+    .then(LinkListResponse.parse)
+    .catch((err) => {
+      console.error(err);
+      throw err;
+    });
 
-    return validLinkList;
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
+  return res;
 };

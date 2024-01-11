@@ -1,4 +1,4 @@
-import { getLinkList } from "@/apis/link/link";
+import { resolvers } from "@/resolvers/folder.resolver";
 import { LinkInfo } from "@/types/folder";
 import { useEffect, useState } from "react";
 
@@ -21,7 +21,7 @@ export const useLinkListQuery = (
     if (userId === null) return;
     setIsLoading(true);
     try {
-      const { data: linkList } = await getLinkList(userId, folderId);
+      const linkList = await resolvers.resolveLinkList(userId, folderId);
       setLinkList(successor(linkList));
 
       return { linkList, isLoading, error };
@@ -37,7 +37,7 @@ export const useLinkListQuery = (
     let ignore = false;
     const fetchLinkList = async () => {
       try {
-        const { data: linkList } = await getLinkList(userId, folderId);
+        const linkList = await resolvers.resolveLinkList(userId, folderId);
         if (!ignore) {
           setLinkList(linkList);
         }

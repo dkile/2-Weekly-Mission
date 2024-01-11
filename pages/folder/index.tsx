@@ -1,7 +1,5 @@
 import { InferGetServerSidePropsType } from "next";
 import { useEffect, useState } from "react";
-import { getFolderList } from "@/apis/folder/folder";
-import { getUser } from "@/apis/user/user";
 import { PAGE_ROUTES } from "@/routes";
 import Tabs from "@/components/common/Tabs";
 import FolderControl from "@/components/folder/FolderControl";
@@ -9,13 +7,11 @@ import Layout from "@/components/folder/Layout";
 import LinkCardListSection from "@/components/folder/LinkCardListSection";
 import LinkFilter from "@/components/folder/LinkFilter";
 import { useUserAction } from "@/hooks/user/use-user";
+import { resolvers } from "@/resolvers/folder.resolver";
 
 export const getServerSideProps = async () => {
   try {
-    const { data: users } = await getUser(1);
-    const user = users.at(0);
-    if (!user) throw new Error("Cannot find user");
-    const { data: folderList } = await getFolderList(user.id);
+    const { user, folderList } = await resolvers.resolveFolderPage();
 
     return { props: { user, folderList } };
   } catch (err) {

@@ -1,12 +1,12 @@
 import { InferGetServerSidePropsType } from "next";
 import { useState } from "react";
-import { getSampleFolder } from "@/apis/sample/sample";
 import LinkFilter from "@/components/shared/LinkFilter";
 import Layout from "@/components/shared/Layout";
 import LinkCardList from "@/components/shared/LinkCardList";
+import { resolvers } from "@/resolvers/shared.resolver";
 
 export const getServerSideProps = async () => {
-  const { folder } = await getSampleFolder();
+  const folder = await resolvers.resolveSharedPage();
 
   return { props: { folder } };
 };

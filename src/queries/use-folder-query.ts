@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getFolderList } from "@/apis/folder/folder";
 import { Folder } from "@/types/folder";
+import { resolvers } from "@/resolvers/folder.resolver";
 
 export const useFolderListQuery = (userId: number | null) => {
   const [folderList, setFolderList] = useState<Folder[]>([]);
@@ -12,7 +12,7 @@ export const useFolderListQuery = (userId: number | null) => {
     let ignore = false;
     const fetchFolderList = async () => {
       try {
-        const { data: folderList } = await getFolderList(userId);
+        const folderList = await resolvers.resolveFolderList(userId);
         if (!ignore) {
           setFolderList(folderList);
         }
