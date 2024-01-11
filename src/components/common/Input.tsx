@@ -7,12 +7,7 @@ interface Props
   error?: string | boolean;
 }
 
-export default function Input({
-  type = "text",
-  error,
-  onBlur = () => {},
-  ...props
-}: Props) {
+export default function Input({ type = "text", error, ...props }: Props) {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const handleClickPasswordToggle = () => {
     setPasswordVisible((pv) => !pv);
@@ -23,10 +18,6 @@ export default function Input({
     inputType = passwordVisible ? "text" : "password";
   }
 
-  const handleBlurInput = (e: FocusEvent<HTMLInputElement>) => {
-    onBlur(e);
-  };
-
   return (
     <div className="relative">
       <div
@@ -36,7 +27,6 @@ export default function Input({
         <input
           className="h-full w-full px-[1.5rem] py-[1.8rem] text-[1.6rem] placeholder:text-u-gray-60 focus:outline-none"
           type={inputType}
-          onBlur={handleBlurInput}
           {...props}
         />
         {type === "password" ? (
