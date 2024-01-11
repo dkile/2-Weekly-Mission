@@ -1,5 +1,6 @@
-import { ComponentPropsWithRef, FocusEvent, useState } from "react";
+import { ComponentPropsWithRef } from "react";
 import Icon from "@/components/common/icon/Icon";
+import usePasswordInput from "@/hooks/common/use-password-input";
 
 interface Props
   extends Omit<ComponentPropsWithRef<"input">, "type" | "className"> {
@@ -8,15 +9,11 @@ interface Props
 }
 
 export default function Input({ type = "text", error, ...props }: Props) {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const handleClickPasswordToggle = () => {
-    setPasswordVisible((pv) => !pv);
-  };
-  let inputType = "text";
-
-  if (type === "password") {
-    inputType = passwordVisible ? "text" : "password";
-  }
+  const {
+    passwordVisible,
+    handleClickPasswordToggle,
+    type: passwordInputType,
+  } = usePasswordInput();
 
   return (
     <div className="relative">
@@ -26,7 +23,7 @@ export default function Input({ type = "text", error, ...props }: Props) {
       >
         <input
           className="h-full w-full px-[1.5rem] py-[1.8rem] text-[1.6rem] placeholder:text-u-gray-60 focus:outline-none"
-          type={inputType}
+          type={type === "password" ? passwordInputType : type}
           {...props}
         />
         {type === "password" ? (
