@@ -1,72 +1,72 @@
 import { useClickOutside } from "@/hooks/common/use-click-outside";
 import { useToggle } from "@/hooks/common/use-toggle";
 import {
-	ComponentPropsWithoutRef,
-	MouseEvent,
-	createContext,
-	useContext,
+  ComponentPropsWithoutRef,
+  MouseEvent,
+  createContext,
+  useContext,
 } from "react";
 
 export const PopoverContext = createContext(false);
 export const PopoverActionContext = createContext(() => {});
 
 interface RootProps extends ComponentPropsWithoutRef<"div"> {
-	closeWhenClickOutside?: boolean;
-	closeWhenPressEscape?: boolean;
+  closeWhenClickOutside?: boolean;
+  closeWhenPressEscape?: boolean;
 }
 function Popover({ children, closeWhenClickOutside, ...props }: RootProps) {
-	const [popped, toggle] = useToggle();
-	const clickOutsideRef = useClickOutside<HTMLDivElement>(
-		() => {
-			toggle();
-		},
-		{ dispatchCondition: popped },
-	);
+  const [popped, toggle] = useToggle();
+  const clickOutsideRef = useClickOutside<HTMLDivElement>(
+    () => {
+      toggle();
+    },
+    { dispatchCondition: popped },
+  );
 
-	return (
-		<PopoverContext.Provider value={popped}>
-			<PopoverActionContext.Provider value={toggle}>
-				<div
-					ref={(node) => {
-						if (node && closeWhenClickOutside) clickOutsideRef.current = node;
-						else clickOutsideRef.current = null;
-					}}
-					{...props}
-				>
-					{children}
-				</div>
-			</PopoverActionContext.Provider>
-		</PopoverContext.Provider>
-	);
+  return (
+    <PopoverContext.Provider value={popped}>
+      <PopoverActionContext.Provider value={toggle}>
+        <div
+          ref={(node) => {
+            if (node && closeWhenClickOutside) clickOutsideRef.current = node;
+            else clickOutsideRef.current = null;
+          }}
+          {...props}
+        >
+          {children}
+        </div>
+      </PopoverActionContext.Provider>
+    </PopoverContext.Provider>
+  );
 }
 
 function Trigger({
-	onClick,
-	children,
-	...props
+  onClick,
+  children,
+  ...props
 }: ComponentPropsWithoutRef<"button">) {
-	const toggle = useContext(PopoverActionContext);
+  const toggle = useContext(PopoverActionContext);
 
-	const handleClickTrigger = (e: MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-		toggle();
-		if (onClick) onClick(e);
-	};
+  const handleClickTrigger = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    toggle();
+    if (onClick) onClick(e);
+  };
 
-	return (
-		<button type="button" onClick={handleClickTrigger} {...props}>
-			{children}
-		</button>
-	);
+  return (
+    <button type="button" onClick={handleClickTrigger} {...props}>
+      {children}
+    </button>
+  );
 }
 
-function Content({ children, ...props }: ComponentPropsWithoutRef<"dialog">) {
-	const popped = useContext(PopoverContext);
+function Content({ children, ...props }: ComponentPropsWithoutRef<"div">) {
+  const popped = useContext(PopoverContext);
 
-	return popped ? <dialog {...props}>{children}</dialog> : null;
+  return popped ? <div {...props}>{children}</div> : null;
 }
 
 export default Object.assign(Popover, {
-	Trigger,
-	Content,
+  Trigger,
+  Content,
 });
