@@ -5,7 +5,10 @@ import {
   ReactNode,
 } from "react";
 
-function Card({ children, ...props }: ComponentPropsWithRef<"div">) {
+export default function Card({
+  children,
+  ...props
+}: ComponentPropsWithRef<"div">) {
   return <div {...props}>{children}</div>;
 }
 
@@ -32,8 +35,6 @@ function Description({ description, ...props }: DescriptionProps) {
   return <p {...props}>{description}</p>;
 }
 
-export default Object.assign(Card, {
-  Thumbnail,
-  Title,
-  Description,
-});
+Card.Thumbnail = Thumbnail;
+Card.Title = Title;
+Card.Description = Description;

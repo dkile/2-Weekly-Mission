@@ -14,7 +14,11 @@ interface RootProps extends ComponentPropsWithoutRef<"div"> {
   closeWhenClickOutside?: boolean;
   closeWhenPressEscape?: boolean;
 }
-function Popover({ children, closeWhenClickOutside, ...props }: RootProps) {
+export default function Popover({
+  children,
+  closeWhenClickOutside,
+  ...props
+}: RootProps) {
   const [popped, toggle] = useToggle();
   const clickOutsideRef = useClickOutside<HTMLDivElement>(
     () => {
@@ -66,7 +70,5 @@ function Content({ children, ...props }: ComponentPropsWithoutRef<"div">) {
   return popped ? <div {...props}>{children}</div> : null;
 }
 
-export default Object.assign(Popover, {
-  Trigger,
-  Content,
-});
+Popover.Trigger = Trigger;
+Popover.Content = Content;

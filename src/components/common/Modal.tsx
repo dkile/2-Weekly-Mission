@@ -12,7 +12,7 @@ import Icon from "./icon/Icon";
 const ModalContext = createContext<RefObject<HTMLDialogElement> | null>(null);
 const ModalActionContext = createContext({ open: () => {}, close: () => {} });
 
-function Modal({ children }: PropsWithChildren) {
+export default function Modal({ children }: PropsWithChildren) {
   const { dialogRef, open, close } = useModal();
 
   return (
@@ -77,7 +77,5 @@ function Content({ children, ...props }: ComponentPropsWithoutRef<"dialog">) {
   );
 }
 
-export default Object.assign(Modal, {
-  Trigger,
-  Content,
-});
+Modal.Trigger = Trigger;
+Modal.Content = Content;
