@@ -1,6 +1,6 @@
 import { HTMLAttributes, useEffect, useState } from "react";
 import ky from "ky";
-import { assetRoutes } from "@/routes";
+import { ASSET_ROUTES } from "@/routes";
 
 interface Props extends HTMLAttributes<HTMLSpanElement> {
   name: string;
@@ -23,7 +23,7 @@ export default function SVGIcon({ name, ...props }: Props) {
 }
 
 export const getIcon = async (name: string) => {
-  const res = await ky.get(`${assetRoutes.icon}/${name}.svg`);
+  const res = await ky.get(`${ASSET_ROUTES.ICON}/${name}.svg`);
   const icon = await res.text();
 
   return icon;

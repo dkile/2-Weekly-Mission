@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { assetRoutes, pageRoutes } from "@/routes";
+import { ASSET_ROUTES, PAGE_ROUTES } from "@/routes";
 
 export default function HeroHeader() {
   return (
@@ -16,13 +16,13 @@ export default function HeroHeader() {
         {" 관리해 보세요"}
       </h2>
       <Link
-        href={pageRoutes.singup}
+        href={PAGE_ROUTES.SIGN_UP}
         className="flex w-[20rem] items-center justify-center rounded-[0.8rem] bg-gradient-purple-skyblue px-[1.6rem] py-[1rem] text-[1.4rem] font-semibold text-u-white tablet:w-[35rem] tablet:px-[2rem] tablet:py-[1.6rem] tablet:text-[1.8rem]"
       >
         링크 추가하기
       </Link>
       <Image
-        src={`${assetRoutes.image}/hero`}
+        src={`${ASSET_ROUTES.IMAGE}/hero`}
         className="h-[16rem] w-[32.5rem] tablet:h-[34.4rem] tablet:w-[69.8rem] desktop:h-[59rem] desktop:w-[120rem]"
         alt="Linkbrary 서비스 소개"
         width={2400}

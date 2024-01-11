@@ -2,7 +2,7 @@ import { InferGetServerSidePropsType } from "next";
 import { useEffect, useState } from "react";
 import { getFolderList } from "@/apis/folder/folder";
 import { getUser } from "@/apis/user/user";
-import { pageRoutes } from "@/routes";
+import { PAGE_ROUTES } from "@/routes";
 import Tabs from "@/components/common/Tabs";
 import FolderControl from "@/components/folder/FolderControl";
 import Layout from "@/components/folder/Layout";
@@ -21,7 +21,7 @@ export const getServerSideProps = async () => {
   } catch (err) {
     return {
       redirect: {
-        destination: pageRoutes.signin,
+        destination: PAGE_ROUTES.SIGN_IN,
         permanent: false,
       },
     };

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { HTMLAttributes } from "react";
 import SVGIcon from "@/components/common/icon/SVGIcon";
-import { assetRoutes } from "@/routes";
+import { ASSET_ROUTES } from "@/routes";
 
 const ICON_MATCHER = {
   smile: "smile",
@@ -37,7 +37,7 @@ export default function Icon({ type = "svg", name, ...props }: Props) {
   if (type === "img")
     return (
       <Image
-        src={`${assetRoutes.icon}/${ICON_MATCHER[name]}.svg`}
+        src={`${ASSET_ROUTES.ICON}/${ICON_MATCHER[name]}.svg`}
         alt={`${name} 아이콘`}
         width={20}
         height={20}
