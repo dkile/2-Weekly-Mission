@@ -14,6 +14,7 @@ export default function SigninForm() {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
     trigger,
   } = useForm<SigninRequestBodyVO>();
 
@@ -22,7 +23,14 @@ export default function SigninForm() {
       await resolvers.resolveSignin(email, password);
       router.push(PAGE_ROUTES.FOLDER);
     } catch (err) {
-      console.error(err);
+      setError("email", {
+        type: "custom",
+        message: "이메일을 확인해주세요.",
+      });
+      setError("password", {
+        type: "custom",
+        message: "비밀번호를 확인해주세요.",
+      });
     }
   };
 
