@@ -22,6 +22,8 @@ const ICON_MATCHER = {
   close: "close",
   eyeOn: "eye-on",
   eyeOff: "eye-off",
+  google: "google",
+  kakao: "kakao",
 };
 
 export type IconDict = keyof typeof ICON_MATCHER;

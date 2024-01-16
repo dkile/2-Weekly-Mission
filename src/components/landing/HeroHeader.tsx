@@ -16,7 +16,7 @@ export default function HeroHeader() {
         {" 관리해 보세요"}
       </h2>
       <Link
-        href={PAGE_ROUTES.SIGN_UP}
+        href={PAGE_ROUTES.SIGNUP}
         className="flex w-[20rem] items-center justify-center rounded-[0.8rem] bg-gradient-purple-skyblue px-[1.6rem] py-[1rem] text-[1.4rem] font-semibold text-u-white tablet:w-[35rem] tablet:px-[2rem] tablet:py-[1.6rem] tablet:text-[1.8rem]"
       >
         링크 추가하기

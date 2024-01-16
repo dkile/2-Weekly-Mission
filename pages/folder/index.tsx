@@ -17,7 +17,7 @@ export const getServerSideProps = async () => {
   } catch (err) {
     return {
       redirect: {
-        destination: PAGE_ROUTES.SIGN_IN,
+        destination: PAGE_ROUTES.SIGNIN,
         permanent: false,
       },
     };
