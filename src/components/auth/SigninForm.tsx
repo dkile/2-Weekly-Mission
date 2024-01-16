@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { ASSET_ROUTES, PAGE_ROUTES } from "@/routes";
 import Input from "@/components/common/Input";
 import { RGX_EMAIL } from "@/utils/regex";
 import { resolvers } from "@/resolvers/auth.resolver";
-import { useRouter } from "next/router";
 
 export type SigninFormField = {
   email: string;
@@ -48,10 +48,13 @@ export default function SigninForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <header>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-[3rem]"
+    >
+      <header className="flex flex-col items-center gap-[1.6rem]">
         <Link href={PAGE_ROUTES.HOME}>
-          <h1>Linkbrary</h1>
+          <h1 className="hidden">Linkbrary</h1>
           <Image
             src={`${ASSET_ROUTES.ICON}/logo.svg`}
             alt="Linkbrary 로고"
@@ -60,14 +63,21 @@ export default function SigninForm() {
             priority
           />
         </Link>
-        <div>
+        <div className="text-[1.6rem]">
           회원이 아니신가요
-          <Link href={PAGE_ROUTES.SIGNUP}>회원 가입하기</Link>
+          <Link
+            href={PAGE_ROUTES.SIGNUP}
+            className="ml-[0.4rem] font-bold text-u-primary underline underline-offset-4"
+          >
+            회원 가입하기
+          </Link>
         </div>
       </header>
-      <div>
-        <div>
-          <label htmlFor="email">이메일</label>
+      <div className="flex flex-col gap-[2.4rem]">
+        <div className="flex flex-col gap-[1.2rem] text-[1.4rem]">
+          <label htmlFor="email" className="cursor-pointer">
+            이메일
+          </label>
           <Input<SigninFormField>
             id="email"
             type="text"
@@ -85,7 +95,7 @@ export default function SigninForm() {
             }}
           />
         </div>
-        <div>
+        <div className="flex flex-col gap-[1.2rem] text-[1.4rem]">
           <label htmlFor="password">비밀번호</label>
           <Input<SigninFormField>
             id="password"
@@ -100,8 +110,13 @@ export default function SigninForm() {
             }}
           />
         </div>
-        <button type="submit">로그인</button>
       </div>
+      <button
+        type="submit"
+        className="w-full justify-center rounded-[0.8rem] bg-gradient-purple-skyblue px-[2rem] py-[1.6rem] text-[1.8rem] text-u-white"
+      >
+        로그인
+      </button>
     </form>
   );
 }

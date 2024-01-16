@@ -13,9 +13,11 @@ export default function Page() {
   }, [router]);
 
   return (
-    <main>
-      <SigninForm />
-      <SocialSigninNav />
+    <main className="flex h-full flex-col items-center justify-center bg-u-skyblue px-[3.2rem]">
+      <section className="flex w-full max-w-[40rem] flex-col gap-[3.2rem]">
+        <SigninForm />
+        <SocialSigninNav />
+      </section>
     </main>
   );
 }

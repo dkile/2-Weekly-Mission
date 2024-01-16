@@ -41,7 +41,7 @@ export default function Input<T extends FieldValues>({
         data-iserror={error === "" || !!error}
       >
         <input
-          className="h-full w-full px-[1.5rem] py-[1.8rem] text-[1.6rem] placeholder:text-u-gray-60 focus:outline-none"
+          className="h-full w-full px-[1.5rem] py-[1.8rem] placeholder:text-[1.6rem] placeholder:text-u-gray-60 focus:outline-none"
           type={type === "password" ? passwordInputType : type}
           {...register(name, options)}
           {...props}

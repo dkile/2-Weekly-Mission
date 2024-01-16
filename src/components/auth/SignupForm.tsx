@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { ASSET_ROUTES, PAGE_ROUTES } from "@/routes";
 import Input from "@/components/common/Input";
 import { RGX_EMAIL, RGX_LETTER_DIGIT_COMB } from "@/utils/regex";
 import { resolvers as authResolvers } from "@/resolvers/auth.resolver";
 import { resolvers as userResolvers } from "@/resolvers/user.resolver";
-import { useRouter } from "next/router";
 import {
   MIN_PASSWORD_LENGTH,
   MSG_INVALID_PASSWORD_FORMAT,
@@ -59,10 +59,13 @@ export default function SignupForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <header>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-[3rem]"
+    >
+      <header className="flex flex-col items-center gap-[1.6rem]">
         <Link href={PAGE_ROUTES.HOME}>
-          <h1>Linkbrary</h1>
+          <h1 className="hidden">Linkbrary</h1>
           <Image
             src={`${ASSET_ROUTES.ICON}/logo.svg`}
             alt="Linkbrary 로고"
@@ -71,14 +74,21 @@ export default function SignupForm() {
             priority
           />
         </Link>
-        <div>
+        <div className="text-[1.6rem]">
           이미 회원이신가요?
-          <Link href={PAGE_ROUTES.SIGNIN}>로그인 하기</Link>
+          <Link
+            href={PAGE_ROUTES.SIGNIN}
+            className="ml-[0.4rem] font-bold text-u-primary underline underline-offset-4"
+          >
+            로그인 하기
+          </Link>
         </div>
       </header>
-      <div>
-        <div>
-          <label htmlFor="email">이메일</label>
+      <div className="flex flex-col gap-[2.4rem]">
+        <div className="flex flex-col gap-[1.2rem] text-[1.4rem]">
+          <label htmlFor="email" className="cursor-pointer">
+            이메일
+          </label>
           <Input<SignupFormField>
             id="email"
             type="text"
@@ -105,8 +115,10 @@ export default function SignupForm() {
             }}
           />
         </div>
-        <div>
-          <label htmlFor="password">비밀번호</label>
+        <div className="flex flex-col gap-[1.2rem] text-[1.4rem]">
+          <label htmlFor="password" className="cursor-pointer">
+            비밀번호
+          </label>
           <Input<SignupFormField>
             id="password"
             type="password"
@@ -128,8 +140,10 @@ export default function SignupForm() {
             }}
           />
         </div>
-        <div>
-          <label htmlFor="passwordConfirm">비밀번호</label>
+        <div className="flex flex-col gap-[1.2rem] text-[1.4rem]">
+          <label htmlFor="passwordConfirm" className="cursor-pointer">
+            비밀번호 확인
+          </label>
           <Input<SignupFormField>
             id="passwordConfirm"
             type="password"
@@ -147,8 +161,13 @@ export default function SignupForm() {
             }}
           />
         </div>
-        <button type="submit">회원가입</button>
       </div>
+      <button
+        type="submit"
+        className="w-full justify-center rounded-[0.8rem] bg-gradient-purple-skyblue px-[2rem] py-[1.6rem] text-[1.8rem] text-u-white"
+      >
+        회원가입
+      </button>
     </form>
   );
 }

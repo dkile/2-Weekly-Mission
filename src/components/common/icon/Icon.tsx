@@ -41,8 +41,8 @@ export default function Icon({ type = "svg", name, ...props }: Props) {
       <Image
         src={`${ASSET_ROUTES.ICON}/${ICON_MATCHER[name]}.svg`}
         alt={`${name} 아이콘`}
-        width={20}
-        height={20}
+        width={100}
+        height={100}
         aria-hidden
         {...props}
       />
