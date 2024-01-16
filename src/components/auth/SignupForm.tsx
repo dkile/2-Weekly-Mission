@@ -152,7 +152,6 @@ export default function SignupForm() {
             error={errors.passwordConfirm?.message}
             register={register}
             options={{
-              required: MSG_NOT_SAME_PASSWORD_CONFIRM,
               validate: {
                 sameWithPassword: (pc, { password }) =>
                   pc === password || MSG_NOT_SAME_PASSWORD_CONFIRM,
