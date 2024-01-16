@@ -11,8 +11,13 @@ export const SigninResponse = z.object({
 });
 export type SigninResponse = z.infer<typeof SigninResponse>;
 
-export const SigninRequestBodyVO = z.object({
+export const AuthRequestBodyVO = z.object({
   email: z.string(),
   password: z.string(),
 });
-export type SigninRequestBodyVO = z.infer<typeof SigninRequestBodyVO>;
+export type AuthRequestBodyVO = z.infer<typeof AuthRequestBodyVO>;
+
+export const SignupResponse = z.object({
+  data: AuthTokenVO,
+});
+export type SignupResponse = z.infer<typeof SignupResponse>;

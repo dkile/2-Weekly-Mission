@@ -3,10 +3,14 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { ASSET_ROUTES, PAGE_ROUTES } from "@/routes";
 import Input from "@/components/common/Input";
-import { SigninRequestBodyVO } from "@/apis/auth/auth.schema";
 import { RGX_EMAIL } from "@/utils/regex";
 import { resolvers } from "@/resolvers/auth.resolver";
 import { useRouter } from "next/router";
+
+export type SigninFormField = {
+  email: string;
+  password: string;
+};
 
 export default function SigninForm() {
   const router = useRouter();
@@ -16,10 +20,11 @@ export default function SigninForm() {
     formState: { errors },
     setError,
     trigger,
-  } = useForm<SigninRequestBodyVO>();
+  } = useForm<SigninFormField>();
 
-  const onSubmit = async ({ email, password }: SigninRequestBodyVO) => {
+  const onSubmit = async ({ email, password }: SigninFormField) => {
     try {
+      trigger(["email", "password"]);
       await resolvers.resolveSignin(email, password);
       router.push(PAGE_ROUTES.FOLDER);
     } catch (err) {
@@ -63,7 +68,7 @@ export default function SigninForm() {
       <div>
         <div>
           <label htmlFor="email">이메일</label>
-          <Input<SigninRequestBodyVO>
+          <Input<SigninFormField>
             id="email"
             type="text"
             name="email"
@@ -82,7 +87,7 @@ export default function SigninForm() {
         </div>
         <div>
           <label htmlFor="password">비밀번호</label>
-          <Input<SigninRequestBodyVO>
+          <Input<SigninFormField>
             id="password"
             type="password"
             name="password"
