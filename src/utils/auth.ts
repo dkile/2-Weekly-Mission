@@ -5,6 +5,8 @@ export const getAccessToken = () => {
   return localStorage.getItem("accessToken");
 };
 
+export const checkAuthenticated = () => !!getAccessToken();
+
 export const MIN_PASSWORD_LENGTH = 8;
 
 export const MSG_INVALID_PASSWORD_FORMAT =
