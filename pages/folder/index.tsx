@@ -8,6 +8,8 @@ import LinkCardListSection from "@/components/folder/LinkCardListSection";
 import LinkFilter from "@/components/folder/LinkFilter";
 import { useUserAction } from "@/hooks/user/use-user";
 import { resolvers } from "@/resolvers/folder.resolver";
+import { useRouter } from "next/router";
+import { checkAuthenticated } from "@/utils/auth";
 
 export const getServerSideProps = async () => {
   try {
@@ -29,11 +31,9 @@ export default function FolderPage({
   folderList,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [search, setSearch] = useState("");
-  const { setUser } = useUserAction();
+  const router = useRouter();
 
-  useEffect(() => {
-    setUser(user);
-  });
+  if (!checkAuthenticated()) router.push(PAGE_ROUTES.SIGNIN);
 
   return (
     <Layout>
