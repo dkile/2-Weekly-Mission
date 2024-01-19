@@ -19,28 +19,28 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon name="facebook" type="img" />
+            <Icon name="facebook" type="img" className="h-[2rem] w-[2rem]" />
           </Link>
           <Link
             href="https://twitter.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon name="twitter" type="img" />
+            <Icon name="twitter" type="img" className="h-[2rem] w-[2rem]" />
           </Link>
           <Link
             href="https://www.youtube.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon name="youtube" type="img" />
+            <Icon name="youtube" type="img" className="h-[2rem] w-[2rem]" />
           </Link>
           <Link
             href="https://www.instagram.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon name="instagram" type="img" />
+            <Icon name="instagram" type="img" className="h-[2rem] w-[2rem]" />
           </Link>
         </div>
       </div>

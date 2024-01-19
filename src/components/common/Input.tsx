@@ -1,14 +1,33 @@
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import Icon from "@/components/common/icon/Icon";
 import usePasswordInput from "@/hooks/common/use-password-input";
+import {
+  FieldValues,
+  Path,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
 
-interface Props
-  extends Omit<ComponentPropsWithRef<"input">, "type" | "className"> {
-  type?: "text" | "password";
+interface Props<T extends FieldValues>
+  extends Omit<
+    ComponentPropsWithoutRef<"input">,
+    "type" | "className" | "name"
+  > {
+  type: "text" | "password";
+  name: Path<T>;
   error?: string | boolean;
+  register: UseFormRegister<T>;
+  options?: RegisterOptions<T>;
 }
 
-export default function Input({ type = "text", error, ...props }: Props) {
+export default function Input<T extends FieldValues>({
+  type = "text",
+  error,
+  name,
+  register,
+  options,
+  ...props
+}: Props<T>) {
   const {
     passwordVisible,
     handleClickPasswordToggle,
@@ -18,12 +37,13 @@ export default function Input({ type = "text", error, ...props }: Props) {
   return (
     <div className="relative">
       <div
-        className="flex items-center justify-between overflow-hidden rounded-[0.8rem] border-[0.1rem] border-u-gray-20 bg-u-white text-u-black focus-within:border-u-primary data-[isError=true]:!border-u-red"
-        data-isError={error === "" || !!error}
+        className="flex items-center justify-between overflow-hidden rounded-[0.8rem] border-[0.1rem] border-u-gray-20 bg-u-white text-u-black focus-within:border-u-primary data-[iserror=true]:!border-u-red"
+        data-iserror={error === "" || !!error}
       >
         <input
-          className="h-full w-full px-[1.5rem] py-[1.8rem] text-[1.6rem] placeholder:text-u-gray-60 focus:outline-none"
+          className="h-full w-full px-[1.5rem] py-[1.8rem] placeholder:text-[1.6rem] placeholder:text-u-gray-60 focus:outline-none"
           type={type === "password" ? passwordInputType : type}
+          {...register(name, options)}
           {...props}
         />
         {type === "password" ? (

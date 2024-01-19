@@ -14,3 +14,10 @@ export const UserResponse = z.object({
   data: z.array(UserVO),
 });
 export type UserResponse = z.infer<typeof UserResponse>;
+
+export const CheckEmailResponse = z.object({
+  data: z.object({
+    isUsableNickname: z.boolean(),
+  }),
+});
+export type CheckEmailResponse = z.infer<typeof CheckEmailResponse>;

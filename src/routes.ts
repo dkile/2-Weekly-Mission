@@ -12,12 +12,16 @@ export const apiRouteUtils = {
   parseLinkListURL: (userId: number) => `users/${userId}/links`,
   parseUserURL: (userId: number) => `users/${userId}`,
   SAMPLE_FOLDER: "sample/folder",
+  SIGNIN: "sign-in",
+  SIGNUP: "sign-up",
+  REFRESH_TOKEN: "refresh-token",
+  CHECK_EMAIL: "check-email",
 };
 
 export const PAGE_ROUTES = {
   HOME: "/",
-  SIGN_IN: "/signin",
-  SIGN_UP: "/signup",
+  SIGNIN: "/signin",
+  SIGNUP: "/signup",
   SHARED: "/shared",
   FOLDER: "/folder",
   PRIVACY: "/privacy",
