@@ -12,7 +12,14 @@ import { useEffect, useState } from "react";
 export default function Page() {
   const [search, setSearch] = useState("");
   const router = useRouter();
+  const {
+    query: { id: folderID },
+  } = router;
   const { folderList } = useMyFolderListQuery();
+
+  const currentFolder = folderList.find(
+    (folder) => folder.id === Number(folderID),
+  );
 
   useEffect(() => {
     if (!checkAuthenticated()) router.push(PAGE_ROUTES.SIGNIN);
@@ -29,7 +36,6 @@ export default function Page() {
           <nav className="flex w-full flex-wrap gap-[0.8rem]">
             <Link
               href={PAGE_ROUTES.FOLDER}
-              data-on={true}
               className="flex-shrink-0 rounded-[0.5rem] border-[0.1rem] border-u-primary px-[1rem] py-[0.6rem] text-[1.6rem] data-[on=true]:bg-u-primary data-[on=true]:text-u-white tablet:px-[1.2rem] tablet:py-[0.8rem]"
             >
               전체
@@ -38,6 +44,7 @@ export default function Page() {
               <Link
                 key={folder.id}
                 href={`${PAGE_ROUTES.FOLDER}/${folder.id}`}
+                data-on={Number(folderID) === folder.id}
                 className="flex-shrink-0 rounded-[0.5rem] border-[0.1rem] border-u-primary px-[1rem] py-[0.6rem] text-[1.6rem] data-[on=true]:bg-u-primary data-[on=true]:text-u-white tablet:px-[1.2rem] tablet:py-[0.8rem]"
               >
                 {folder.name}
@@ -47,7 +54,8 @@ export default function Page() {
           <div className="flex flex-col gap-[2.4rem]">
             <LinkCardListSection
               folder={{
-                name: "전체",
+                id: currentFolder?.id,
+                name: currentFolder?.name ?? "",
               }}
               headerRightSection={<FolderControl />}
               search={search}

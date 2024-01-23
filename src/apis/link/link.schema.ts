@@ -12,7 +12,14 @@ export const LinkVO = z.object({
 });
 export type LinkVO = z.infer<typeof LinkVO>;
 
-export const LinkListResponse = z.object({
+export const UsersLinkListResponse = z.object({
   data: z.array(LinkVO),
 });
-export type LinkListResponse = z.infer<typeof LinkListResponse>;
+export type UsersLinkListResponse = z.infer<typeof UsersLinkListResponse>;
+
+export const LinkListResponse = z.object({
+  data: z.object({
+    folder: z.array(LinkVO),
+  }),
+});
+export type FolderLinkListResponse = z.infer<typeof LinkListResponse>;

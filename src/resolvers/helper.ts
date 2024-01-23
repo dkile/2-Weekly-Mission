@@ -1,7 +1,7 @@
-import { FolderVO } from "@/apis/folder/folder.schema";
+import { FolderVO, MyFolderVO } from "@/apis/folder/folder.schema";
 import { LinkVO } from "@/apis/link/link.schema";
 import { UserVO } from "@/apis/user/user.schema";
-import { Folder, LinkInfo } from "@/types/folder";
+import { Folder, LinkInfo, MyFolder } from "@/types/folder";
 import { User } from "@/types/user";
 
 export const createUserWithUserVO = (vo: UserVO): User => {
@@ -23,6 +23,18 @@ export const createFolderListWithFolderListVO = (vo: FolderVO[]): Folder[] => {
     userId: fvo.user_id,
     favorite: fvo.favorite,
     link: fvo.link,
+  }));
+};
+
+export const createMyFolderListWithMyFolderListVO = (
+  vo: MyFolderVO[],
+): MyFolder[] => {
+  return vo.map((fvo) => ({
+    id: fvo.id,
+    name: fvo.name,
+    createdAt: fvo.created_at,
+    userId: fvo.user_id,
+    favorite: fvo.favorite,
   }));
 };
 

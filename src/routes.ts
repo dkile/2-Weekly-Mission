@@ -17,6 +17,8 @@ export const apiRouteUtils = {
   REFRESH_TOKEN: "refresh-token",
   CHECK_EMAIL: "check-email",
   CURRENT_USER: "users",
+  FOLDER_LIST: "folders",
+  LINK_LIST: "links",
 };
 
 export const PAGE_ROUTES = {

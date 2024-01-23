@@ -9,6 +9,8 @@ export type Folder = {
   };
 };
 
+export type MyFolder = Omit<Folder, "link">;
+
 export type CurrentFolder = Pick<Folder, "id" | "name">;
 
 export type LinkInfo = {

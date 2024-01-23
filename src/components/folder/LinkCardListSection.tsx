@@ -1,7 +1,6 @@
 import LinkCardList from "@/components/folder/LinkCardList";
 import { ReactNode, useMemo } from "react";
 import { useLinkListQuery } from "@/queries/use-link-query";
-import { useUser } from "@/hooks/user/use-user";
 
 interface Props {
   folder: { id?: number; name: string };
@@ -13,8 +12,7 @@ export default function LinkCardListSection({
   headerRightSection,
   search = "",
 }: Props) {
-  const user = useUser();
-  const { linkList } = useLinkListQuery(user.id, folder.id);
+  const { linkList } = useLinkListQuery(folder.id);
 
   const filteredLinkList = useMemo(
     () =>

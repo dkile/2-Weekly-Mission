@@ -1,9 +1,10 @@
-import { getFolderList } from "@/apis/folder/folder";
+import { getFolderList, getMyFolderList } from "@/apis/folder/folder";
 import { getLinkList } from "@/apis/link/link";
 import { getUser } from "@/apis/user/user";
 import {
   createFolderListWithFolderListVO,
   createLinkListWithLinkListVO,
+  createMyFolderListWithMyFolderListVO,
   createUserWithUserVO,
 } from "@/resolvers/helper";
 
@@ -24,9 +25,16 @@ export const resolvers = {
 
     return createFolderListWithFolderListVO(folderList);
   },
-  resolveLinkList: async (userId: number, folderId?: number) => {
-    const { data: linkList } = await getLinkList(userId, folderId);
+  resolveLinkList: async (folderId?: number) => {
+    const {
+      data: { folder: linkList },
+    } = await getLinkList(folderId);
 
     return createLinkListWithLinkListVO(linkList);
+  },
+  resolveMyFolderList: async () => {
+    const { data: folderList } = await getMyFolderList();
+
+    return createMyFolderListWithMyFolderListVO(folderList.folder);
   },
 };

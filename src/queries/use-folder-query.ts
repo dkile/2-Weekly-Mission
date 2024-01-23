@@ -13,3 +13,15 @@ export const useFolderListQuery = (userId: number) => {
 
   return { folderList, isLoading, error };
 };
+
+export const useMyFolderListQuery = () => {
+  const {
+    data: folderList,
+    isLoading,
+    error,
+  } = useQuery({
+    queryFn: useCallback(() => resolvers.resolveMyFolderList(), []),
+  });
+
+  return { folderList: folderList ?? [], isLoading, error };
+};

@@ -14,7 +14,7 @@ export default function LinkCardOption({ onClickMenuItem = () => {} }: Props) {
   return (
     <Popover closeWhenClickOutside className="relative">
       <Popover.Trigger className="flex h-[3.2rem] w-[3.2rem] items-center justify-center rounded-[0.5rem] transition-[background] hover:bg-[rgba(0,0,0,0.05)] data-[on=true]:bg-[rgba(0,0,0,0.05)]">
-        <Icon name="kebab" type="img" />
+        <Icon name="kebab" type="img" className="h-[2rem] w-[2rem]" />
       </Popover.Trigger>
       <Popover.Content className="absolute z-10 flex w-max flex-col overflow-hidden rounded-[0.5rem] bg-u-white shadow-[0px_2px_8px_0px_rgba(51,50,54,0.10)]">
         <CardOptionMenuContent

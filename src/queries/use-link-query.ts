@@ -3,17 +3,13 @@ import { useCallback } from "react";
 import { resolvers } from "@/resolvers/folder.resolver";
 import { LinkInfo } from "@/types/folder";
 
-export const useLinkListQuery = (userId: number, folderId?: number) => {
+export const useLinkListQuery = (folderId?: number) => {
   const {
     data: linkList = [],
     isLoading,
     error,
   } = useQuery<LinkInfo[]>({
-    queryKey: userId,
-    queryFn: useCallback(
-      () => resolvers.resolveLinkList(userId, folderId),
-      [userId, folderId],
-    ),
+    queryFn: useCallback(() => resolvers.resolveLinkList(folderId), [folderId]),
   });
 
   return { linkList, isLoading, error };
