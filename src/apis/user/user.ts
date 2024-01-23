@@ -31,3 +31,16 @@ export const postCheckEmail = async (email: string) => {
 
   return res;
 };
+
+export const getCurrentUser = async () => {
+  const res = await fetcher
+    .get(apiRouteUtils.CURRENT_USER)
+    .json()
+    .then(UserResponse.parse)
+    .catch((err) => {
+      console.error(err);
+      throw err;
+    });
+
+  return res;
+};

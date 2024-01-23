@@ -16,6 +16,7 @@ export const apiRouteUtils = {
   SIGNUP: "sign-up",
   REFRESH_TOKEN: "refresh-token",
   CHECK_EMAIL: "check-email",
+  CURRENT_USER: "users",
 };
 
 export const PAGE_ROUTES = {

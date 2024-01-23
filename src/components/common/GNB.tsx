@@ -3,9 +3,17 @@ import { ASSET_ROUTES, PAGE_ROUTES } from "@/routes";
 import Link from "next/link";
 import AccountButton from "@/components/common/AccountButton";
 import Image from "next/image";
+import { useCurrentUserQuery } from "@/queries/use-user-query";
+import { useEffect } from "react";
+import { useUserAction } from "@/hooks/user/use-user";
 
 export default function GNB() {
-  const isLoggedIn = useAuth();
+  const currentUser = useCurrentUserQuery();
+  const { setUser } = useUserAction();
+
+  useEffect(() => {
+    if (currentUser) setUser(currentUser);
+  }, [currentUser, setUser]);
 
   return (
     <div className="sticky top-0 z-50 h-[6.8rem] w-full bg-u-skyblue tablet:h-[9.4rem]">
@@ -20,7 +28,7 @@ export default function GNB() {
             priority
           />
         </Link>
-        {isLoggedIn ? (
+        {currentUser ? (
           <AccountButton />
         ) : (
           <Link
