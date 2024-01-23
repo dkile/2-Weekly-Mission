@@ -33,7 +33,9 @@ export default function FolderPage({
   const [search, setSearch] = useState("");
   const router = useRouter();
 
-  if (!checkAuthenticated()) router.push(PAGE_ROUTES.SIGNIN);
+  useEffect(() => {
+    if (!checkAuthenticated()) router.push(PAGE_ROUTES.SIGNIN);
+  }, [router]);
 
   return (
     <Layout>
